@@ -11,9 +11,9 @@ package atm;
 public class RetirarYtransferir {
      public static void retirar(Object [][] cuentas){
             Scanner sc=new Scanner(System.in);
-            System.out.println("¿Cuanto desea retirar?(Numero enteros)");
+            System.out.println("¿Cuanto desea retirar?(Numero enteros y mayor o igual a 100)");
             int retiro=sc.nextInt();
-             if(retiro<=(double)cuentas[0][2]){
+             if(retiro<=(double)cuentas[0][2]&&retiro>100){
                double saldo = (double) cuentas[0][2];  
         double nuevo = saldo - retiro;
         cuentas[0][2] = nuevo;
@@ -34,7 +34,7 @@ public class RetirarYtransferir {
          if((int)cuentas[i][0]==destino){
              System.out.print("¿Cuanto desea depositar?");
        double monto = sc.nextDouble();
-             if(monto<=(double)cuentas[0][2]){
+             if(monto<=(double)cuentas[0][2]&&monto>0){
                 cuentas[i][2] = (double) cuentas[i][2] + monto;
             cuentas[0][2] = (double) cuentas[0][2] - monto; 
             System.out.println("tRANSFERENCIA REALIZADA CON EXITO");
@@ -62,7 +62,8 @@ public class RetirarYtransferir {
         
     }
              
-          public static void main(String[] args) {
+        
+    public static void main(String[] args) {
         
         Object [][] cuentas={{111, "Xim", 2000.0},
             {222, "Luquin", 5000.0}};
@@ -70,6 +71,6 @@ public class RetirarYtransferir {
         transfe(cuentas);
         
         
-    }
-}
+    }}
+
 
