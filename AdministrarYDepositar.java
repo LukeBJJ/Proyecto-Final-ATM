@@ -6,7 +6,63 @@ public class AdministrarYDepositar {
 
 
 
-
+ public class atm_Depositar_Y_Administrar{
+            
+     public static void Deposito (double s){
+    
+     
+        double SaldoDeCuenta =10000;
+       
+       double saldo_actual = SaldoDeCuenta + s;
+        
+    System.out.println("--------------------------------------------");
+    System.out.println("Tu saldo actual es de: " +"$"+ saldo_actual);
+    System.out.println("--------------------------------------------");
+        }
+     
+     public static void Nombre ( Object [] admi){
+     Scanner sc = new Scanner (System.in);
+         
+         System.out.println("Tu nombre actual es:");
+         System.out.println(admi[0]);
+         System.out.println();
+         System.out.println("Porque nombre lo quiere cambiar? (empezando por apellidos)");
+         
+         admi [0] = sc.nextLine();
+         
+         System.out.println("Tu cambio se realizo con exito");
+         System.out.println();
+         System.out.println("Tu nuevo nombre es: " +admi[0]);
+         
+     }
+     
+     public static void Nip (Object [] admi){
+     Scanner sc = new Scanner (System.in);
+         
+         int Cnip = (int) admi[1];
+         
+         int intentos = 1;
+         
+         while(intentos <4){  
+              System.out.println("Ingrese su nip actual");
+             int nipA = sc.nextInt();
+         if ( Cnip == nipA)
+         {
+             System.out.println("Ingrese el nuevo nip");
+             admi [1] = sc.nextInt();
+              System.out.println();
+           System.out.println("Su nuevo Nip es:");
+               System.out.println(admi[1]);    
+               return;
+         }else
+         {
+             
+             if(intentos == 3)
+         {System.out.println("Cuenta bloqueada");}
+         intentos ++; }
+         }
+         
+     }
 
 
     
@@ -235,4 +291,5 @@ public static void main(String[]args){
 
     
 }
+
 
