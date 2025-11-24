@@ -6,82 +6,50 @@ import java.util.Random;
   
 
   public class interfaz {
-    static int [] cuentas = new int [10]; 
-    static int [] nip = new int [10];
-    static String [] nombredelusuario = new String [10];
-    static String [] numerodecelular = new  String [10];
-    static int usuariosRegistrados = 1; 
-    static int Intentos = 3;
-   
-     static Random generadorCuentas = new Random();
+     public static void NuevoUsuario(int[]cuentas, String[]nombredelusuario, String[]numerodecelular, int [] nip, double [] saldo, int persona){
+      
+         Scanner sc = new Scanner(System.in);
+
+        System.out.println("REGISTRO DE NUEVO USUARIO:");
+        
+        System.out.print("Ingrese número de cuenta: ");
+        cuentas[persona] = sc.nextInt();
+
+        sc.nextLine(); // limpiar buffer
+
+        System.out.print("Ingrese nombre completo: ");
+        nombredelusuario[persona] = sc.nextLine();
+        
+        System.out.print("Ingrese número de celular: ");
+        numerodecelular[persona] = sc.nextLine();
      
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        
-        cuentas[0] = 44763041; 
-        nip [0] = 1326; 
-         
-       
+        System.out.print("Elija un NIP: ");
+        nip[persona] = sc.nextInt();
         
         
-        int opcion;
-        do{ 
-            System.out.println("Menú Cajero:");
-            System.out.println("1. Agregar usuario");
-            System.out.println("2. Iniciar sesión");
-            System.out.println("3. Salir");
-            System.out.print("Elija opción: ");
-            opcion = sc.nextInt();
-            sc.nextLine();
-            
-         switch (opcion) {
-                case 1:
-                    agregarUsuario(sc);
-                    break;
-                
-                case 2:
-                    iniciarSesion(sc);
-                    break;
-                
-                case 3:
-                    System.out.println("Gracias por su preferencia");
-                    break;
-               
-                default:
-                    System.out.println("Opción no válida.");
-            }
-        } while (opcion != 3);
-    }
+        saldo[persona]=1000;
 
-   
-        public static void agregarUsuario (Scanner sc){
-        if (usuariosRegistrados >= cuentas.length) {
-            System.out.println("No se pueden agregar más usuarios.");
-            return;
-        }
-        System.out.println("Ingrese nombre completo");
-        nombredelusuario[usuariosRegistrados]= sc.nextLine();
-        System.out.println("numero de telefono");
-        numerodecelular[usuariosRegistrados]= sc.nextLine();
-        int nuevaCuenta = generadorCuentas.nextInt(90000000) + 10000000;
-        cuentas[usuariosRegistrados] = nuevaCuenta;
-        System.out.println("Su número de cuenta ha sido generado automáticamente.");
-        System.out.println("Anótelo, es: " + nuevaCuenta);
-        System.out.print("Ingresa el NIP: ");
-        nip[usuariosRegistrados] = sc.nextInt();
-        sc.nextLine();
-        usuariosRegistrados++;
-        System.out.println("Usuario agregado correctamente.");
-    }
-
-    public static void iniciarSesion(Scanner sc) {
+        System.out.println("USUARIO REGISTRADO CON ÉXITO.");
+ 
+ }
+  
+   public static void MostrarUsuarios(int[]cuentas, String [] nombredelusuario, String [] numerodecelular, int persona){
+   System.out.println("LISTA DE USUARIOS REGISTRADOS:");
+                for (int i = 0; i <= persona; i++) {
+                    System.out.println("\nUsuario: " + nombredelusuario[i]);
+                    System.out.println("Cuenta: " + cuentas[i]);
+                    System.out.println("Celular: " + numerodecelular[i]);
+ }}
+    
+     public static void IniciarSesion(int[]cuentas, int[] nip) {
+         Scanner sc = new Scanner(System.in);
         System.out.print("Ingresa tu cuenta: ");
         int cuentaIngresada = sc.nextInt();
         System.out.print("Ingresa tu NIP: ");
         int nipIngresado = sc.nextInt();
         sc.nextLine();
         boolean encontrado = false;
-        for (int i = 0; i < usuariosRegistrados;  i++ ) {
+        for (int i = 0; i < cuentas.length;  i++ ) {
            
             if (cuentas[i] == cuentaIngresada && nip[i] == nipIngresado){
             
@@ -95,5 +63,52 @@ import java.util.Random;
             System.out.println("Cuenta o NIP incorrectos.");
         }
     }
+  
+  
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);    
+    int [] cuentas = new int [10]; 
+    String [] nombredelusuario = new String [10];
+    String [] numerodecelular = new String [10];
+    int [] nip = new int [10];
+    int persona = 0; 
+    double [] saldo= new double[10];
+    
+    cuentas[0]=12345678;
+    nombredelusuario[0]="Ximena Meza Fuertes";
+    numerodecelular[0]="1234567891";
+    nip[0]=1234;
+    saldo[0]=10000.0;
+    
+    System.out.println("---------- Menu Cajero ---------- ");  
+    System.out.println("1. Crear usuario nuevo"); 
+    System.out.println("2. Iniciar sesion");
+    System.out.println(". Mostrar listado de cuentas");
+    System.out.println("Elija una opcion: ");
+    int opcion=sc.nextInt();
+    
+     switch (opcion) {
+                case 1:
+                   persona=persona+1;
+                   NuevoUsuario(cuentas, nombredelusuario, numerodecelular, nip, saldo, persona);
+                    break;
+                
+                case 2:
+                  IniciarSesion(cuentas, nip);
+                    break;
+                
+                case 3:
+                   MostrarUsuarios(cuentas, nombredelusuario, numerodecelular, persona);
+                    break;
+               
+                default:
+                    System.out.println("Opción no válida.");
+                    break;
+            }
+    
+    }
+    
 }
+
+
 
